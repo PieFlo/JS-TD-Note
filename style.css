@@ -1,0 +1,21 @@
+@charset "UTF-8";
+.bouton {
+    background: green;
+    position:fixed;
+    clear:left;
+    width:1500px;
+}
+.cadre {
+    background: yellow;
+    position:absolute;
+    clear:left;
+    width:1500px;
+    height: 700px;
+}
+.image {
+    width:100px;
+    height:100px;
+    float:left;
+    position:relative;
+    margin:0px;
+}

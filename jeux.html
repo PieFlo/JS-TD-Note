@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="style.css" />
+        <title></title>
+    </head>
+
+    <body>
+        <div class="bouton">
+            <input type="button" onclick="afficherImage('image');" value="START" />
+            <input type="button" onclick="cacherImage('image');" value="STOP" />
+            Vous avez 30 secondes pour cliquer sur l'image !
+        </div><br/>
+        <div id="cadre" class="cadre">
+            <div id="image" class="image" onclick="victory();"></div>
+        </div>
+        <script>
+            x = 50;
+            y = 50;
+            dx = 10; 
+            dy = 10;
+            vitesse= 50;
+            function afficherImage(id)
+            {
+                document.getElementById(id).innerHTML="<img src='images/me_gusta.png' id='imagee' width='200'>";
+                move();
+                window.setTimeout("cacherImage('image');", 30000);
+            }
+            function cacherImage(id)
+            {
+                document.getElementById(id).remove();
+            }
+
+            function move(){
+                hauteur = document.getElementById("cadre").offsetHeight;
+                largeur = document.getElementById("cadre").offsetWidth;
+                if (x < 0) {
+                    dx = (Math.random() * 20);
+                }
+                if (x > largeur - 96) {
+                    dx = (Math.random() * 20) * (-1);
+                }
+                if (y < 0) {
+                    dy = (Math.random() * 20);
+                }
+                if (y > hauteur - 92) {
+                    dy = (Math.random() * 20) * (-1);
+                }
+                var bloc = document.getElementById("image");
+                x += dx;
+                y += dy;
+                bloc.style.left = x + "px";
+                bloc.style.top = y + "px";
+                window.setTimeout("move();", vitesse);
+            }
+            function victory() {
+                cacherImage('image');
+                alert('Bravo ! Vous avez Gagné !')
+            }
+
+
+        </script>
+    </body>
+</html>
