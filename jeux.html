@@ -21,11 +21,14 @@
             dx = 10; 
             dy = 10;
             vitesse= 50;
+            taille=200;
+            timer =null;
+            faceImage="<img src=\'images/me_gusta.png\' id=\'imagee\' width=\'"+taille+"\'>";
             function afficherImage(id)
             {
-                document.getElementById(id).innerHTML="<img src='images/me_gusta.png' id='imagee' width='200'>";
+                document.getElementById(id).innerHTML=faceImage;
                 move();
-                window.setTimeout("cacherImage('image');", 30000);
+                timer = window.setTimeout("perdu();", 30000);
             }
             function cacherImage(id)
             {
@@ -54,11 +57,14 @@
                 bloc.style.top = y + "px";
                 window.setTimeout("move();", vitesse);
             }
-            function victory() {
+            function victory(){
                 cacherImage('image');
                 alert('Bravo ! Vous avez Gagné !')
             }
-
+            function perdu(){
+                cacherImage('image');
+                alert('Game Over ! Temps écoulé, vous avez perdu !');
+            }
 
         </script>
     </body>
