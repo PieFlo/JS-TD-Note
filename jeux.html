@@ -7,10 +7,19 @@
     </head>
 
     <body>
-        <div class="bouton">
-            <input type="button" onclick="afficherImage('image');" value="START" />
-            <input type="button" onclick="cacherImage('image');" value="STOP" />
-            Vous avez 30 secondes pour cliquer sur l'image !
+        <div class ="barre";>
+            <div class="bouton">
+                <input type="button" onclick="afficherImage('image');" value="START" />
+                <input type="button" onclick="cacherImage('image');" value="STOP" />
+                &nbsp; Vous avez 30 secondes pour cliquer sur l'image !
+            </div>
+            <div id="compteur" class ="compteur"></div>
+            <div id="difficulte" class="difficulte">
+                Niveau de difficulté :
+                <input type="button" onclick="setDifficult(4///00, 50);" value="FACILE" /> <!-- taille, vitesse -->
+                <input type="button" onclick="setDifficult(200, 30);" value="NORMAL" />
+                <input type="button" onclick="setDifficult(50, 6);" value="DIFFICILE" />
+            </div>
         </div><br/>
         <div id="cadre" class="cadre">
             <div id="image" class="image" onclick="victory();"></div>
@@ -18,21 +27,28 @@
         <script>
             x = 50;
             y = 50;
-            dx = 10; 
+            dx = 10;
             dy = 10;
-            vitesse= 50;
+            vitesse=30;
             taille=200;
+            duree="30";
+
             timer =null;
-            faceImage="<img src=\'images/me_gusta.png\' id=\'imagee\' width=\'"+taille+"\'>";
+            faceImage="<img src=\'images/me_gusta.png\' id=\'img\' width=\'"+taille+"\'>";
             function afficherImage(id)
             {
                 document.getElementById(id).innerHTML=faceImage;
                 move();
-                timer = window.setTimeout("perdu();", 30000);
+                duree="30";
+                compteArebours();
+                timerJeu = window.setTimeout("perdu();", 30000);
             }
             function cacherImage(id)
             {
-                document.getElementById(id).remove();
+                document.getElementById(id).innerHTML="";
+                compteur.innerHTML="";
+                clearInterval(timerJeu);
+                clearInterval(timerCompte);
             }
 
             function move(){
@@ -50,7 +66,7 @@
                 if (y > hauteur - 92) {
                     dy = (Math.random() * 20) * (-1);
                 }
-                var bloc = document.getElementById("image");
+                bloc = document.getElementById("image");
                 x += dx;
                 y += dy;
                 bloc.style.left = x + "px";
@@ -64,6 +80,30 @@
             function perdu(){
                 cacherImage('image');
                 alert('Game Over ! Temps écoulé, vous avez perdu !');
+            }
+            function setDifficult(t, v){
+                vitesse =v;
+                taille =t;
+                faceImage="<img src=\'images/me_gusta.png\' id=\'img\' width=\'"+taille+"\'>";
+            }
+            function compteArebours()
+            {
+                var compteur=document.getElementById('compteur');
+                s=duree;
+                if(s<0)
+                {
+                    compteur.innerHTML="terminé"
+                }
+                else
+                {
+                    if(s<10)
+                    {
+                        s="0"+s
+                    }
+                    compteur.innerHTML=s
+                }
+                duree=duree-1;
+                timerCompte = window.setTimeout("compteArebours();",1000);
             }
 
         </script>

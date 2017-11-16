@@ -1,16 +1,29 @@
 @charset "UTF-8";
-.bouton {
-    background: green;
-    position:fixed;
+
+.barre{
+    position:relative;
     clear:left;
-    width:1500px;
 }
 .cadre {
     background: yellow;
-    position:absolute;
+    position:relative;
     clear:left;
     width:1500px;
     height: 700px;
+}
+.bouton {
+    float:left;
+    position:relative;
+    width: 700px;
+}
+.compteur{
+    float:left;
+    position:relative;
+    width: 300px;
+}
+.difficulte {
+    float:right;
+    position:relative;
 }
 .image {
     width:100px;
@@ -19,3 +32,4 @@
     position:relative;
     margin:0px;
 }
+
